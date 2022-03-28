@@ -10,7 +10,7 @@ class Block {
 
 	constructor(data){
 		this.id = 0;
-        this.nonce = 144444;
+        this.nonce = 1444441;
       	this.body = data;
       	this.hash = "";
     }
@@ -26,7 +26,13 @@ class Block {
   	generateHash() {
       	// Use this to create a temporary reference of the class object
       	let self = this;
-        //Implement your code here
+        const promise = new Promise((res, rej) => {
+          const hash = SHA256(JSON.stringify(self)).toString();
+          self.hash = hash; 
+          res(self);
+        })
+
+        return promise;
         
     }
 }
